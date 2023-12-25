@@ -5,5 +5,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t sperlus/docker-react .
+  - docker build -t sperlus/docker-react -f Dockerfile.dev .
 
+script:
+  - docker run -e CI=true sperlus/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-2"
+  app: "application-docker-react"
+  env: "Application-docker-react-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-2-526303303934"
+  bucket_path: "application-docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
