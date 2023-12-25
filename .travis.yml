@@ -8,4 +8,4 @@ before_install:
   - docker build -t sperlus/docker-react .
 
 script:
-  - docker run -e CI=true sperlus/docker-react npm run build
+  - docker run -e CI=true sperlus/docker-react
