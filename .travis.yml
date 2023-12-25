@@ -7,5 +7,3 @@ services:
 before_install:
   - docker build -t sperlus/docker-react .
 
-script:
-  - docker run -p 8080:80 -e CI=true sperlus/docker-react
